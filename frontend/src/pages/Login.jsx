@@ -1,9 +1,10 @@
 import React from 'react';
+import HeaderLogin from '../components/HeaderLogin';
 
 function Login() {
   return (
     <div>
-      <h1>Sou a página de Login</h1>
+      <HeaderLogin />
     </div>
   );
 }
