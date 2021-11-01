@@ -2,14 +2,16 @@ import React from 'react';
 
 function LoginPanel() {
   return (
-    <div>
-      <div id="email-input">
-        <p>Email: </p>
-      </div>
-      <div id="password-input">
-        <p>Password: </p>
-      </div>
-      <button type="button" id="login-button">login</button>
+    <div id="panel-container">
+      <form>
+        <label htmlFor="email">
+          <input type="email" placeholder="Email" id="email" />
+        </label>
+        <label htmlFor="password">
+          <input type="password" placeholder="Password" id="password" />
+        </label>
+        <button type="button" id="login-button">login</button>
+      </form>
       <p>Signup</p>
     </div>
   );

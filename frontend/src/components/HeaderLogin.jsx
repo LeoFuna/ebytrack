@@ -2,7 +2,7 @@ import React from 'react';
 
 function HeaderLogin() {
   return (
-    <header>
+    <header id="header-container">
       <h1>EBYTRack</h1>
     </header>
   );
