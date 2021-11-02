@@ -10,9 +10,10 @@ function LoginPanel() {
         <label htmlFor="password">
           <input type="password" placeholder="Password" id="password" />
         </label>
-        <button type="button" id="login-button">login</button>
+        <button type="submit" id="login-button">login</button>
       </form>
-      <p>Signup</p>
+      {/* Aqui deverá ser um redirect de rota para o signup */}
+      <p id="signup">Signup</p>
     </div>
   );
 }
