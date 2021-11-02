@@ -1,13 +1,24 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { LoginButton } from '../styles/LoginStyles';
 
 function LoginPanel() {
   const [formData, setFormData] = useState({ email: '', password: '' });
+  const [isDisable, setIsDisable] = useState(true);
   function handleForm({ target: { id, value } }) {
     setFormData({
       ...formData,
       [id]: value,
     });
   }
+
+  useEffect(() => {
+    if (formData.email && formData.password) {
+      setIsDisable(false);
+    } else {
+      setIsDisable(true);
+    }
+  }, [formData]);
+
   return (
     <div id="panel-container">
       <form>
@@ -25,7 +36,14 @@ function LoginPanel() {
           placeholder="Password"
           id="password"
         />
-        <button type="submit" id="login-button">login</button>
+        <LoginButton
+          disabled={ isDisable }
+          type="submit"
+          id="login-button"
+        >
+          login
+
+        </LoginButton>
       </form>
       {/* Aqui deverá ser um redirect de rota para o signup */}
       <p id="signup">Signup</p>
