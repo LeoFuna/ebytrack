@@ -1,15 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 function LoginPanel() {
+  const [formData, setFormData] = useState({ email: '', password: '' });
+  function handleForm({ target: { id, value } }) {
+    setFormData({
+      ...formData,
+      [id]: value,
+    });
+  }
   return (
     <div id="panel-container">
       <form>
-        <label htmlFor="email">
-          <input type="email" placeholder="Email" id="email" />
-        </label>
-        <label htmlFor="password">
-          <input type="password" placeholder="Password" id="password" />
-        </label>
+        <input
+          type="email"
+          onChange={ handleForm }
+          value={ formData.email }
+          placeholder="Email"
+          id="email"
+        />
+        <input
+          type="password"
+          onChange={ handleForm }
+          value={ formData.password }
+          placeholder="Password"
+          id="password"
+        />
         <button type="submit" id="login-button">login</button>
       </form>
       {/* Aqui deverá ser um redirect de rota para o signup */}
