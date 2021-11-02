@@ -1,0 +1,71 @@
+#login-main-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #232931; 
+}
+
+#panel-container {
+  display: flex;
+  flex-direction: column;
+  border-radius: 4px;
+  width: 70vw;
+  height: 50vh;
+  border: 1.5px solid black;
+  background: #eeeeee;
+}
+
+#signature-container {
+  display: flex;
+  height: 25vh;
+  align-items: flex-end;
+  color: #eeeeee;
+}
+
+#signature-container h4 span{
+  color: #4ecca3;
+}
+
+#header-container {
+  display: flex;
+  align-items: center;
+  height: 25vh;
+  font-size: larger;
+  color: #4ecca3;
+}
+
+#header-container h1 span{
+  color: #eeeeee;
+}
+
+#email, #password{
+  width: 90%;
+  height: 15%;
+  border-radius: 5px;
+  display: block;
+  font-size: medium;
+  margin: 15% auto 15% auto;
+  color: #212121;
+}
+
+#signup {
+  text-align: right;
+  margin-right: 15%;
+  color: #212121;
+}
+
+#login-button {
+  display: block;
+  width: 90%;
+  height: 20%;
+  font-size: larger;
+  font-weight: 700;
+  border-radius: 5px;
+  margin: auto auto;
+  color: #212121;
+}
+
+form {
+  display: block;
+  height: 90vh;
+}
