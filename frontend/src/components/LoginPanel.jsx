@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { LoginButton } from '../styles/LoginStyles';
 
 function LoginPanel() {
@@ -61,7 +62,10 @@ function LoginPanel() {
         </LoginButton>
       </form>
       {/* Aqui deverá ser um redirect de rota para o signup */}
-      <p id="signup">Signup</p>
+      <Link to="/profile" style={ { textDecoration: 'none' } }>
+        <p id="signup">Signup</p>
+      </Link>
+
     </div>
   );
 }
