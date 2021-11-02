@@ -102,6 +102,7 @@ function SignupPanel() {
           Signup
         </SignupButton>
       </form>
+      <p>voltar</p>
     </div>
   );
 }
