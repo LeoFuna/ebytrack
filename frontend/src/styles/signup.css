@@ -29,3 +29,29 @@
   border: 1.5px solid black;
   background: #eeeeee;
 }
+
+#signup-container h2{
+  text-align: center;
+  color: #393e46;
+}
+
+#email-signup, #password-signup, #name-signup, #lastname-signup{
+  width: 90%;
+  height: 15%;
+  border-radius: 5px;
+  display: block;
+  font-size: medium;
+  margin: 5% auto 5% auto;
+  color: #212121;
+}
+
+#signup-button {
+  display: block;
+  width: 90%;
+  height: 10%;
+  font-size: larger;
+  font-weight: 700;
+  border-radius: 5px;
+  margin: 7% auto auto auto;
+  color: #212121;
+}
