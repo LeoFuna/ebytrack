@@ -2,8 +2,8 @@ import React from 'react';
 
 function Profile() {
   return (
-    <div>
-      <h1>Sou a página de Login</h1>
+    <div id="profile-main-container">
+      <h1>Sou a página de Profile</h1>
     </div>
   );
 }

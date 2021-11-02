@@ -6,10 +6,10 @@ function LoginPanel() {
   const [formData, setFormData] = useState({ email: '', password: '' });
   const [isDisable, setIsDisable] = useState(true);
 
-  function handleForm({ target: { id, value } }) {
+  function handleForm({ target: { type, value } }) {
     setFormData({
       ...formData,
-      [id]: value,
+      [type]: value,
     });
   }
 
@@ -43,14 +43,14 @@ function LoginPanel() {
           onChange={ handleForm }
           value={ formData.email }
           placeholder="Email"
-          id="email"
+          id="email-login"
         />
         <input
           type="password"
           onChange={ handleForm }
           value={ formData.password }
           placeholder="Password"
-          id="password"
+          id="password-login"
         />
         <LoginButton
           disabled={ isDisable }
@@ -62,7 +62,7 @@ function LoginPanel() {
         </LoginButton>
       </form>
       {/* Aqui deverá ser um redirect de rota para o signup */}
-      <Link to="/profile" style={ { textDecoration: 'none' } }>
+      <Link to="/signup" style={ { textDecoration: 'none' } }>
         <p id="signup">Signup</p>
       </Link>
 

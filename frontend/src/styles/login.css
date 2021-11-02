@@ -11,13 +11,15 @@
   border-radius: 4px;
   width: 70vw;
   height: 50vh;
+  margin-bottom: 12vh;
+  margin-top: 3vh;
   border: 1.5px solid black;
   background: #eeeeee;
 }
 
 #signature-container {
   display: flex;
-  height: 25vh;
+  height: 10vh;
   align-items: flex-end;
   color: #eeeeee;
 }
@@ -26,7 +28,7 @@
   color: #4ecca3;
 }
 
-#header-container {
+#header-container-login {
   display: flex;
   align-items: center;
   height: 25vh;
@@ -34,11 +36,11 @@
   color: #4ecca3;
 }
 
-#header-container h1 span{
+#header-container-login h1 span{
   color: #eeeeee;
 }
 
-#email, #password{
+#email-login, #password-login{
   width: 90%;
   height: 15%;
   border-radius: 5px;

@@ -1,8 +1,8 @@
 import React from 'react';
 
-function HeaderLogin() {
+function HeaderSignup() {
   return (
-    <header id="header-container-login">
+    <header id="header-container-signup">
       <h1>
         EBYTR
         <span>ack</span>
@@ -11,4 +11,4 @@ function HeaderLogin() {
   );
 }
 
-export default HeaderLogin;
+export default HeaderSignup;
