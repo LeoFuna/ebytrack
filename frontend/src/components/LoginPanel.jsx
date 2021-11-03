@@ -61,7 +61,6 @@ function LoginPanel() {
           login
         </LoginButton>
       </form>
-      {/* Aqui deverá ser um redirect de rota para o signup */}
       <Link to="/signup" style={ { textDecoration: 'none' } }>
         <p id="signup">Signup</p>
       </Link>

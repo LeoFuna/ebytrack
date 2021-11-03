@@ -55,3 +55,15 @@
   margin: 7% auto auto auto;
   color: #212121;
 }
+
+#signup-back-button {
+  display: block;
+  width: 90%;
+  height: 65%;
+  font-size: larger;
+  font-weight: 700;
+  border-radius: 5px;
+  margin: 3% auto 4% auto;
+  color: #eeeeee;
+  background-color: #232931;
+}

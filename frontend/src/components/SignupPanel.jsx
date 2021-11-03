@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import {
   FailedSignupMessage, SignupButton, SuccessSignupMessage } from '../styles/SignupStyles';
 
@@ -99,10 +100,12 @@ function SignupPanel() {
           onClick={ () => createUser(formData) }
           id="signup-button"
         >
-          Signup
+          Cadastrar
         </SignupButton>
       </form>
-      <p>voltar</p>
+      <Link to="/" style={ { textDecoration: 'none' } }>
+        <button type="button" id="signup-back-button">Voltar</button>
+      </Link>
     </div>
   );
 }
