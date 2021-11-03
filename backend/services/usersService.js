@@ -1,5 +1,5 @@
 const Model = require('../models/usersModel');
-const { verifyIfEmailIsRegistered, validateRequiredUserDataForCreate } = require('../schemas/usersSchema');
+const { verifyIfEmailIsRegistered, validateRequiredUserDataForCreate, validateEmail, validatePassword } = require('../schemas/usersSchema');
 
 const getAllUsers = async () => {
   const users = await  Model.getAll();
@@ -8,6 +8,17 @@ const getAllUsers = async () => {
 
 const getById = async (id) => {
   const userData = await Model.getById(id);
+  return userData;
+};
+
+const loginUser = async (email, password) => {
+  if (!validateEmail(email) || !validatePassword(password)) {
+    return { err: { code: 401, message: 'Todos os campos devem ser preenchidos com dados válidos' } };
+  };
+  const userData = await Model.getByEmail(email);
+  if (!userData || !userData.password === password) {
+    return { err: { code: 401, message: 'Email ou senha incorretos' } };
+  };
   return userData;
 };
 
@@ -24,4 +35,5 @@ module.exports = {
   getAllUsers,
   getById,
   createUser,
+  loginUser,
 }

@@ -1,4 +1,5 @@
 const Service = require('../services/usersService');
+const jwt = require('jsonwebtoken');
 
 const secret = 'minhasenhasupersecreta';
 
@@ -23,8 +24,8 @@ const loginUser = async (req, res) => {
     expiresIn: '1h',
     algorithm: 'HS256',
   };
-  const { id } = loginResponse;
-  const token = jwt.sign({ id, email }, secret, jwtConfig);
+  const { _id } = loginResponse;
+  const token = jwt.sign({ id: _id, email }, secret, jwtConfig);
   return res.status(200).json({ token });
 };
 
