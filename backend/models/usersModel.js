@@ -11,9 +11,20 @@ const getById = async (id) => {
   const db = await connection();
   const userData = await db.collection('users').findOne({ _id: ObjectId(id) });
   return userData;
-}
+};
+
+const create = async (userData) => {
+  const db = await connection();
+  const createResponse = await db.collection('users').insertOne(userData);
+  return {
+    id: createResponse.insertedId,
+    name: userData.name,
+    lastname: userData.lastname,
+  };
+};
 
 module.exports = {
   getAll,
   getById,
+  create,
 };
