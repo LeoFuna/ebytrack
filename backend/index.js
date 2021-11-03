@@ -1,5 +1,5 @@
 const express = require('express');
-const { getAllUsers, getUserById, createUser } = require('./controllers/usersController');
+const { getAllUsers, getUserById, createUser, loginUser } = require('./controllers/usersController');
 
 const app = express();
 
@@ -13,3 +13,4 @@ app.get('/users', getAllUsers);
 app.get('/users/:id', getUserById);
 
 app.post('/users', createUser);
+app.post('/login', loginUser);
