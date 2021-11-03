@@ -6,7 +6,7 @@ const getAllUsers = async () => {
 };
 
 const getById = async (id) => {
-  const userData = await Users.getById();
+  const userData = await Users.getById(id);
   return userData;
 };
 
