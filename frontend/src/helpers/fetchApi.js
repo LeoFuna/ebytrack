@@ -1,13 +1,7 @@
+import api from './service';
+
 export const fetchCreateUser = async (name, lastname, email, password) => {
-  const myInit = {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*',
-    },
-    body: JSON.stringify({ name, lastname, email, password }),
-  };
-  const response = await fetch('http://localhost:3001/users', myInit);
+  const response = await api.post('/users', { name, lastname, email, password });
   console.log(response);
 };
 
