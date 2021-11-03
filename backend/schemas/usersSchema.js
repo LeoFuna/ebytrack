@@ -21,7 +21,29 @@ const validateRequiredUserDataForCreate = (name, lastname, email, password) => {
   return true;
 };
 
+const validateEmail = (email) => {
+  const schema = Joi.object({
+    email: Joi.string().lowercase().email({
+      minDomainSegments: 2
+    }).required(),
+  });
+  const validationResponse = schema.validate({ email });
+  if (validationResponse.error) return false;
+  return true;
+};
+
+const validatePassword = (password) => {
+  const schema = Joi.object({
+    password: Joi.string().alphanum().min(6).required(),
+  });
+  const validationResponse = schema.validate({ password });
+  if (validationResponse.error) return false;
+  return true;
+};
+
 module.exports = {
   verifyIfEmailIsRegistered,
   validateRequiredUserDataForCreate,
+  validateEmail,
+  validatePassword,
 };
