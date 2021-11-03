@@ -1,5 +1,5 @@
 const express = require('express');
-const { getAllUsers } = require('./controllers/usersController');
+const { getAllUsers, getUserById } = require('./controllers/usersController');
 
 const app = express();
 
@@ -10,3 +10,4 @@ app.use(express.json());
 app.listen(PORT, () => console.log(`Estou ouvindo a porta ${PORT}`));
 
 app.get('/users', getAllUsers);
+app.get('/users/:id', getUserById);

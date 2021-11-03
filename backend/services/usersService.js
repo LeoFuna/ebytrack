@@ -5,6 +5,12 @@ const getAllUsers = async () => {
   return users;
 };
 
+const getById = async (id) => {
+  const userData = await Users.getById();
+  return userData;
+}
+
 module.exports = {
   getAllUsers,
+  getById,
 }
