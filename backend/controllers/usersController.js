@@ -14,6 +14,7 @@ const getUserById = async (req, res) => {
 const createUser = async (req, res) => {
   const { name, lastname, email, password } = req.body;
   const createResponse = await Users.createUser(name, lastname, email, password);
+  if (createResponse.err) return res.status(createResponse.err.code).json({ message: createResponse.err.message })
   return res.status(201).json(createResponse);
 };
 

@@ -13,6 +13,12 @@ const getById = async (id) => {
   return userData;
 };
 
+const getByEmail = async (email) => {
+  const db = await connection();
+  const userData = await db.collection('users').findOne({ email });
+  return userData;
+};
+
 const create = async (userData) => {
   const db = await connection();
   const createResponse = await db.collection('users').insertOne(userData);
@@ -27,4 +33,5 @@ module.exports = {
   getAll,
   getById,
   create,
+  getByEmail,
 };
