@@ -1,9 +1,15 @@
 import React from 'react';
+import HeaderSignup from '../components/HeaderSignup';
+import Signature from '../components/Signature';
+import SignupPanel from '../components/SignupPanel';
+import '../styles/signup.css';
 
 function Signup() {
   return (
-    <div>
-      <h1>Sou a página de Signup</h1>
+    <div id="signup-main-container">
+      <HeaderSignup />
+      <SignupPanel />
+      <Signature />
     </div>
   );
 }
