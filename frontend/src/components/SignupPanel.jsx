@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { fetchCreateUser } from '../helpers/fetchApi';
 import {
   FailedSignupMessage, SignupButton, SuccessSignupMessage } from '../styles/SignupStyles';
 
@@ -23,8 +24,9 @@ function SignupPanel() {
     });
   }
 
-  function createUser(userData) {
-    console.log(userData);// dado que vai ser jogado no BD
+  async function createUser(userData) {
+    const { name, lastname, email, password } = userData;
+    await fetchCreateUser(name, lastname, email, password);
     const messageShownTimer = 2000;
     const successResponse = {
       id: 123456, name: 'Leo', lastname: 'Funa', email: 'meuemail@ebytr.com',
