@@ -4,7 +4,7 @@ const {
   getUserById, 
   createUser, 
   loginUser } = require('./controllers/usersController');
-const { createTask, deleteTask } = require('./controllers/tasksController');
+const { createTask, deleteTask, getTasksByUserId } = require('./controllers/tasksController');
 const auth = require('./auth/auth');
 
 const app = express();
@@ -24,6 +24,7 @@ app.listen(PORT, () => console.log(`Estou ouvindo a porta ${PORT}`));
 
 app.get('/users', getAllUsers);
 app.get('/users/:id', getUserById);
+app.get('/tasks', auth, getTasksByUserId);
 
 app.post('/users', createUser);
 app.post('/login', loginUser);

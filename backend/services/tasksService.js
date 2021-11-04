@@ -10,7 +10,13 @@ const deleteTask = async (id) => {
   return deleteResponse;
 };
 
+const getTasksByUserId = async (userId) => {
+  const tasksFromUser = await Model.getByUserId(userId);
+  return tasksFromUser;
+};
+
 module.exports = {
   createTask,
   deleteTask,
+  getTasksByUserId,
 };

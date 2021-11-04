@@ -6,7 +6,7 @@ const create = async (taskData) => {
   const createResponse = await db.collection('tasks').insertOne(taskData);
   return {
     id: createResponse.insertedId,
-    description: taskData.name,
+    description: taskData.description,
     status: taskData.status,
     created: taskData.created,
     userId: taskData.userId,
@@ -19,7 +19,14 @@ const deleteOne = async (id) => {
   return deleteResponse;
 };
 
+const getByUserId = async (userId) => {
+  const db = await connection();
+  const tasksFromUser = await db.collection('tasks').find({ userId }).toArray();
+  return { tasksFromUser };
+};
+
 module.exports = {
   create,
   deleteOne,
+  getByUserId,
 };
