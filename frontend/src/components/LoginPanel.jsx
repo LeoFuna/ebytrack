@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
+import TasksContext from '../context/tasksContext';
 import UsersContext from '../context/usersContext';
 import { fetchLoginUser } from '../helpers/fetchApi';
 import { LoginButton, LoginMessage } from '../styles/LoginStyles';
@@ -10,6 +11,7 @@ function LoginPanel() {
   const [loginMessage, setLoginMessage] = useState('');
   const [isVisible, setIsVisible] = useState(false);
   const { setGreeting } = useContext(UsersContext);
+  const { getTasksFromApi } = useContext(TasksContext);
   const history = useHistory(); // https://stackoverflow.com/questions/60516300/how-to-use-in-reactjs-functional-component-history-push
 
   function handleForm({ target: { type, value } }) {
@@ -29,6 +31,7 @@ function LoginPanel() {
       setFormData({ email: '', password: '' });
     } else {
       localStorage.setItem('token', loginResponse.data.token);
+      await getTasksFromApi();
       setGreeting(loginResponse.data.name);
       setLoginMessage('Login efetuado com sucesso');
       setIsVisible(true);

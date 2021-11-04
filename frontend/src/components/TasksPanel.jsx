@@ -1,31 +1,16 @@
 import React, { useContext, useState } from 'react';
 import TasksContext from '../context/tasksContext';
+import Task from './Task';
 
 function TasksPanel() {
   const { tasks, orderByAlphabetical, orderByStatus } = useContext(TasksContext);
   const [orderOnDescription, setOrderOnDescription] = useState(0);
   const [orderOnStatus, setOrderOnStatus] = useState(0);
 
+  /* eslint no-underscore-dangle: 0 */
+  // https://stackoverflow.com/questions/44126983/eslint-unexpected-dangling-in-place-no-underscore-dangle
   function renderTasks() {
-    return tasks.map((task, index) => (
-      <div className="task-div" key={ index }>
-        <div className="description-div">
-          <input type="checkbox" className="task-checkbox" />
-          <p className="description-task">{ task.description }</p>
-        </div>
-        <div className="status-created-div">
-          <select>
-            <option value={ task.status }>{ task.status }</option>
-            <option value="pendente">pendente</option>
-            <option value="em andamento">em andamento</option>
-            <option value="pronto">pronto</option>
-          </select>
-        </div>
-        <div className="status-created-div">
-          { task.created }
-        </div>
-      </div>
-    ));
+    return tasks.map((task) => <Task key={ task._id } taskData={ task } />);
   }
 
   function handleOrderOnDescrition() {

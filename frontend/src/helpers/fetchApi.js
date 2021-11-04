@@ -38,3 +38,14 @@ export const fetchGetTasksByUser = async (token) => {
     console.log(err);
   }
 };
+
+export const fetchUpdateTask = async (id, token, payload) => {
+  try {
+    const tasksFromUser = await api.put(`/tasks/${id}`,
+      { ...payload },
+      { headers: { Authorization: token } });
+    return tasksFromUser;
+  } catch (err) {
+    console.log(err);
+  }
+};
