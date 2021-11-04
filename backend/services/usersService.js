@@ -18,7 +18,7 @@ const loginUser = async (email, password) => {
   if (!validateEmail(email) || !validatePassword(password)) {
     return { err: { 
       code: 401,
-      message: 'todos os campos devem ser preenchidos com dados válidos',
+      message: 'dados válidos, tente novamente',
     } };
   }
   const userData = await Model.getByEmail(email);

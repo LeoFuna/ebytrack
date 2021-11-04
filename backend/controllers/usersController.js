@@ -18,7 +18,10 @@ const loginUser = async (req, res) => {
   const { email, password } = req.body;
   const loginResponse = await Service.loginUser(email, password);
   if (loginResponse.err) {
-    return res.status(loginResponse.err.code).json({ message: loginResponse.err.message });
+    return res.status(200).json({ 
+      error: loginResponse.err.code, 
+      message: loginResponse.err.message, 
+    });
   }
   const jwtConfig = {
     expiresIn: '1h',
