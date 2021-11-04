@@ -69,7 +69,7 @@ function LoginPanel() {
         </LoginButton>
       </form>
       <Link to="/signup" style={ { textDecoration: 'none' } }>
-        <p id="signup">Signup</p>
+        <p id="signup">Primeiro Acesso</p>
       </Link>
 
     </div>
