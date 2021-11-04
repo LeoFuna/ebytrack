@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { LoginButton } from '../styles/LoginStyles';
+import { fetchLoginUser } from '../helpers/fetchApi';
+import { LoginButton, LoginMessage } from '../styles/LoginStyles';
 
 function LoginPanel() {
   const [formData, setFormData] = useState({ email: '', password: '' });
   const [isDisable, setIsDisable] = useState(true);
+  const [loginMessage, setLoginMessage] = useState('');
+  const [isVisible, setIsVisible] = useState(false);
 
   function handleForm({ target: { type, value } }) {
     setFormData({
@@ -13,18 +16,19 @@ function LoginPanel() {
     });
   }
 
-  function verifyUserCredentials({ email, password }) {
-    console.log('Acessei com:', email, password);
-    // Aqui o sistema acionará o BD e verificará se existe um usuário com esse email e senha para retornar o acesso ou o bloqueio com erro
-    const retornoDoBanco = { status: 404 };
-    const success = 200;
-    if (retornoDoBanco.status === success) {
-      console.log('Login com Sucesso');
-      // Redirecione para a página de login
+  async function verifyUserCredentials({ email, password }) {
+    const messageShownTimer = 2000;
+    const loginResponse = await fetchLoginUser(email, password);
+    if (loginResponse.data.error) {
+      setLoginMessage(loginResponse.data.message);
+      setIsVisible(true);
     } else {
-      console.log('Email ou senha inválidos...');
-      // retorne o erro recebido com uma mensagem específica
+      console.log(loginResponse);
+      setLoginMessage('Login efetuado com sucesso');
+      setIsVisible(true);
     }
+    setTimeout(() => setIsVisible(false), messageShownTimer);
+    setFormData({ email: '', password: '' });
   }
 
   useEffect(() => {
@@ -45,6 +49,7 @@ function LoginPanel() {
           placeholder="Email"
           id="email-login"
         />
+        <LoginMessage isVisibleHandler={ isVisible }>{ loginMessage }</LoginMessage>
         <input
           type="password"
           onChange={ handleForm }
@@ -54,7 +59,7 @@ function LoginPanel() {
         />
         <LoginButton
           disabled={ isDisable }
-          type="submit"
+          type="button"
           onClick={ () => verifyUserCredentials(formData) }
           id="login-button"
         >

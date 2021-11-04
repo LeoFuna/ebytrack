@@ -71,3 +71,11 @@ form {
   display: block;
   height: 90vh;
 }
+
+form p {
+  position: fixed;
+  top: 40vh;
+  left: 18vw;
+  display: block;
+  color: #212121;
+}

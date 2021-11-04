@@ -1,5 +1,5 @@
-const Service = require('../services/usersService');
 const jwt = require('jsonwebtoken');
+const Service = require('../services/usersService');
 
 const secret = 'minhasenhasupersecreta';
 
@@ -18,7 +18,10 @@ const loginUser = async (req, res) => {
   const { email, password } = req.body;
   const loginResponse = await Service.loginUser(email, password);
   if (loginResponse.err) {
-    return res.status(loginResponse.err.code).json({ message: loginResponse.err.message });
+    return res.status(200).json({ 
+      error: loginResponse.err.code, 
+      message: loginResponse.err.message, 
+    });
   }
   const jwtConfig = {
     expiresIn: '1h',
@@ -32,7 +35,12 @@ const loginUser = async (req, res) => {
 const createUser = async (req, res) => {
   const { name, lastname, email, password } = req.body;
   const createResponse = await Service.createUser(name, lastname, email, password);
-  if (createResponse.err) return res.status(createResponse.err.code).json({ message: createResponse.err.message })
+  if (createResponse.err) { // Esse ponto precisa ser rafatorado futuramente para o tratamento correto de erros
+    return res.status(200).json({ 
+      error: createResponse.err.code,
+      message: createResponse.err.message,
+    });
+  }
   return res.status(201).json(createResponse);
 };
 

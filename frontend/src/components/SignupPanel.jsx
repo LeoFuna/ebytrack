@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { fetchCreateUser } from '../helpers/fetchApi';
 import {
   FailedSignupMessage, SignupButton, SuccessSignupMessage } from '../styles/SignupStyles';
 
@@ -15,6 +16,7 @@ function SignupPanel() {
   const [isVisibleHandler, setIsVisibleHandler] = useState({
     success: false, failed: false,
   });
+  const [errorMessage, setErrorMessage] = useState('');
 
   function handleForm({ target: { name, value } }) {
     setFormData({
@@ -23,14 +25,12 @@ function SignupPanel() {
     });
   }
 
-  function createUser(userData) {
-    console.log(userData);// dado que vai ser jogado no BD
+  async function createUser(userData) {
     const messageShownTimer = 2000;
-    const successResponse = {
-      id: 123456, name: 'Leo', lastname: 'Funa', email: 'meuemail@ebytr.com',
-    };
-    // Vai ao BD e tenta fazer a config de criar usuário e dali retorna a informação de ok ou erro
-    if (successResponse.err) {
+    const { name, lastname, email, password } = userData;
+    const createResponse = await fetchCreateUser(name, lastname, email, password);
+    if (createResponse.error) {
+      setErrorMessage(createResponse.message);
       setIsVisibleHandler({ success: false, failed: true });
       setTimeout(() => setIsVisibleHandler({
         success: false, failed: false }), messageShownTimer);
@@ -59,7 +59,7 @@ function SignupPanel() {
         <h4>CADASTRO CRIADO COM SUCESSO</h4>
       </SuccessSignupMessage>
       <FailedSignupMessage isVisibleHandler={ isVisibleHandler.failed }>
-        <h4>DADOS INVÁLIDOS...</h4>
+        <h4>{ errorMessage }</h4>
       </FailedSignupMessage>
       <form>
         <input
