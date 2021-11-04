@@ -27,9 +27,9 @@ const loginUser = async (req, res) => {
     expiresIn: '1h',
     algorithm: 'HS256',
   };
-  const { _id } = loginResponse;
+  const { _id, name } = loginResponse;
   const token = jwt.sign({ id: _id, email }, secret, jwtConfig);
-  return res.status(200).json({ token });
+  return res.status(200).json({ token, name });
 };
 
 const createUser = async (req, res) => {
