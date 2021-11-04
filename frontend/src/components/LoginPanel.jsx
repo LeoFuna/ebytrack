@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { fetchLoginUser } from '../helpers/fetchApi';
 import { LoginButton, LoginMessage } from '../styles/LoginStyles';
 
@@ -8,6 +8,7 @@ function LoginPanel() {
   const [isDisable, setIsDisable] = useState(true);
   const [loginMessage, setLoginMessage] = useState('');
   const [isVisible, setIsVisible] = useState(false);
+  const history = useHistory(); // https://stackoverflow.com/questions/60516300/how-to-use-in-reactjs-functional-component-history-push
 
   function handleForm({ target: { type, value } }) {
     setFormData({
@@ -22,13 +23,14 @@ function LoginPanel() {
     if (loginResponse.data.error) {
       setLoginMessage(loginResponse.data.message);
       setIsVisible(true);
+      setTimeout(() => setIsVisible(false), messageShownTimer);
+      setFormData({ email: '', password: '' });
     } else {
       console.log(loginResponse);
       setLoginMessage('Login efetuado com sucesso');
       setIsVisible(true);
+      history.push({ pathname: '/tasks' });
     }
-    setTimeout(() => setIsVisible(false), messageShownTimer);
-    setFormData({ email: '', password: '' });
   }
 
   useEffect(() => {
