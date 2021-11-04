@@ -50,6 +50,24 @@
   color: #eeeeee;
 }
 
+/* Input Create Tasks Styles */
+
+#tasks-create-container {
+  display: flex;
+  align-items: center;
+}
+
+#create-task-input {
+  width: 60vw;
+  height: 23px;
+}
+
+#add-task-button {
+  width: 27vw;
+  height: 30px;
+  margin-left: 5px;
+}
+
 /* Panel Styles */
 
 #tasks-container {
@@ -60,7 +78,7 @@
   width: 90vw;
   margin-bottom: 7vh;
   margin-top: 2vh;
-  height: 65vh;
+  height: 62vh;
   border: 1.5px solid black;
   background: #eeeeee;
 }

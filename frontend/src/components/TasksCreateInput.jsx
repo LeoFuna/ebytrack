@@ -8,7 +8,7 @@ function TasksCreateInput() {
         id="create-task-input"
         placeholder="Informe a task a ser adicionada..."
       />
-      <button type="button">Adicionar</button>
+      <button type="button" id="add-task-button">Adicionar</button>
     </div>
   );
 }
