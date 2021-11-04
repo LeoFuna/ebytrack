@@ -21,6 +21,7 @@ function LoginPanel() {
     } else {
       console.log('Login com Sucesso');
     }
+    setFormData({ email: '', password: '' });
   }
 
   useEffect(() => {
