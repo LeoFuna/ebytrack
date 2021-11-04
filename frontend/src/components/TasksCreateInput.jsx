@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react';
 import TasksContext from '../context/tasksContext';
+import verifyMonth from '../helpers/helpers';
 
 function TasksCreateInput() {
   const [newTask, setNewTasks] = useState('');
@@ -10,7 +11,15 @@ function TasksCreateInput() {
   }
 
   function addTaskHandler() {
-    addNewTask(newTask);
+    const date = new Date();
+    const month = verifyMonth(date.getMonth());
+    const fullDate = `${date.getDate()}:${month}`;
+    const completeDataOfTask = {
+      description: newTask,
+      status: 'pendente',
+      created: fullDate,
+    };
+    addNewTask(completeDataOfTask);
     setNewTasks('');
   }
 

@@ -82,3 +82,15 @@
   border: 1.5px solid black;
   background: #eeeeee;
 }
+
+.task-div {
+  display: flex;
+  margin: 5px 5px;
+}
+
+.task-div div {
+  display: block;
+  width: 33vw;
+  text-align: center;
+  margin: 5px 5px;
+}
