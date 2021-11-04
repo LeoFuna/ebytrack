@@ -13,7 +13,7 @@ function TasksCreateInput() {
   function addTaskHandler() {
     const date = new Date();
     const month = verifyMonth(date.getMonth());
-    const fullDate = `${date.getDate()}:${month}`;
+    const fullDate = `${date.getDate()}/${month}`;
     const completeDataOfTask = {
       description: newTask,
       status: 'pendente',

@@ -9,8 +9,28 @@ function TasksProvider({ children }) {
     setTasks([...tasks, newTask]);
   }
 
+  function orderByAlphabetical(order) {
+    let positionOnOrder;
+    if (order) {
+      positionOnOrder = { putBefore: -1, putAfter: 1, equal: 0 };
+    } else {
+      positionOnOrder = { putBefore: 1, putAfter: -1, equal: 0 };
+    }
+    // https://stackoverflow.com/questions/6712034/sort-array-by-firstname-alphabetically-in-javascript/51897069
+    const orderedTasksByDescription = tasks.sort((firstArgument, secondArgument) => {
+      if (firstArgument.description < secondArgument.description) {
+        return positionOnOrder.putBefore;
+      }
+      if (firstArgument.description > secondArgument.description) {
+        return positionOnOrder.putAfter;
+      }
+      return positionOnOrder.equal;
+    });
+    setTasks([...orderedTasksByDescription]);
+  }
+
   return (
-    <TasksContext.Provider value={ { tasks, addNewTask } }>
+    <TasksContext.Provider value={ { tasks, addNewTask, orderByAlphabetical } }>
       { children }
     </TasksContext.Provider>
   );

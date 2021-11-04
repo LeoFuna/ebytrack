@@ -1,18 +1,24 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import TasksContext from '../context/tasksContext';
 
 function TasksPanel() {
-  const { tasks } = useContext(TasksContext);
+  const { tasks, orderByAlphabetical } = useContext(TasksContext);
+  const [orderOnDescription, setOrderOnDescription] = useState(0);
 
   function renderTasks() {
     return tasks.map((task, index) => (
       <div className="task-div" key={ index }>
         <div className="description-div">
-          <input type="checkbox" name="minha Task" className="task-checkbox" />
+          <input type="checkbox" className="task-checkbox" />
           <p className="description-task">{ task.description }</p>
         </div>
         <div className="status-created-div">
-          { task.status }
+          <select>
+            <option value={ task.status }>{ task.status }</option>
+            <option value="pendente">pendente</option>
+            <option value="em andamento">em andamento</option>
+            <option value="pronto">pronto</option>
+          </select>
         </div>
         <div className="status-created-div">
           { task.created }
@@ -21,22 +27,35 @@ function TasksPanel() {
     ));
   }
 
+  function handleOrderOnDescrition() {
+    if (orderOnDescription === 0) {
+      orderByAlphabetical('alphabetical');
+      setOrderOnDescription(1);
+    } else {
+      orderByAlphabetical();
+      setOrderOnDescription(0);
+    }
+  }
+
   return (
     <div id="tasks-container">
-      {/* <div>
-        <div name="task-div">
-          <div>
-            <input type="checkbox" name="minha Task" id="task" />
-            <p>minha task</p>
-          </div>
+      <div id="header-task-panel">
+        <div className="description-div">
+          <button
+            className="description-task"
+            onClick={ () => handleOrderOnDescrition() }
+            type="button"
+          >
+            Descrição
+          </button>
         </div>
-        <div name="status-div">
-          status
+        <div className="status-created-div">
+          Status
         </div>
-        <div name="created-div">
-          created
+        <div className="status-created-div">
+          Criado
         </div>
-      </div> */}
+      </div>
       { renderTasks() }
     </div>
   );
