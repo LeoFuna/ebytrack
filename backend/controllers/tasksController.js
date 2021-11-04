@@ -20,8 +20,16 @@ const getTasksByUserId = async (req, res) => {
   return res.status(200).json(tasksFromUser);
 };
 
+const updateTask = async (req, res) => {
+  const { id } = req.params;
+  const { updatedTask } = req.body;
+  const updateResponse = await Service.updateTask(updatedTask, id);
+  res.status(200).json(updateResponse);
+};
+
 module.exports = {
   createTask,
   deleteTask,
   getTasksByUserId,
+  updateTask,
 };

@@ -15,8 +15,14 @@ const getTasksByUserId = async (userId) => {
   return tasksFromUser;
 };
 
+const updateTask = async (updatedTask, id) => {
+  const updateResponse = await Model.update({ id, ...updatedTask });
+  return updateResponse;
+};
+
 module.exports = {
   createTask,
   deleteTask,
   getTasksByUserId,
+  updateTask,
 };

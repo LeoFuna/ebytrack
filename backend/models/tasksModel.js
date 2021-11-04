@@ -25,8 +25,24 @@ const getByUserId = async (userId) => {
   return { tasksFromUser };
 };
 
+const getById = async (id) => {
+  const db = await connection();
+  const taskData = await db.collection('tasks').findOne({ _id: ObjectId(id) });
+  return taskData;
+};
+
+const update = async (newPayload) => {
+  const db = await connection();
+  await db.collection('tasks').updateOne(
+    { _id: ObjectId(newPayload.id) }, { $set: newPayload },
+  );
+  return newPayload;
+};
+
 module.exports = {
   create,
   deleteOne,
   getByUserId,
+  update,
+  getById,
 };
