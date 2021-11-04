@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import TasksContext from './tasksContext';
+import { fetchGetTasksByUser } from '../helpers/fetchApi';
 
 function TasksProvider({ children }) {
   const [tasks, setTasks] = useState([]);
 
-  function addNewTask(newTask) {
-    setTasks([...tasks, newTask]);
+  async function getTasksFromApi() {
+    const token = localStorage.getItem('token');
+    const tasksFromUser = await fetchGetTasksByUser(token);
+    setTasks(tasksFromUser.data.tasksFromUser);
   }
 
   function orderByAlphabetical(order) {
@@ -48,7 +51,7 @@ function TasksProvider({ children }) {
     <TasksContext.Provider
       value={ {
         tasks,
-        addNewTask,
+        getTasksFromApi,
         orderByAlphabetical,
         orderByStatus,
       } }

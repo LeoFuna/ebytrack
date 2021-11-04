@@ -28,6 +28,7 @@ function LoginPanel() {
       setTimeout(() => setIsVisible(false), messageShownTimer);
       setFormData({ email: '', password: '' });
     } else {
+      localStorage.setItem('token', loginResponse.data.token);
       setGreeting(loginResponse.data.name);
       setLoginMessage('Login efetuado com sucesso');
       setIsVisible(true);

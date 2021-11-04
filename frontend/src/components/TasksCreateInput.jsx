@@ -1,25 +1,29 @@
 import React, { useContext, useState } from 'react';
 import TasksContext from '../context/tasksContext';
 import verifyMonth from '../helpers/helpers';
+import { fetchCreateTask } from '../helpers/fetchApi';
 
 function TasksCreateInput() {
   const [newTask, setNewTasks] = useState('');
-  const { addNewTask } = useContext(TasksContext);
+  const { getTasksFromApi } = useContext(TasksContext);
 
   function handleInput({ target: { value } }) {
     setNewTasks(value);
   }
 
-  function addTaskHandler() {
+  async function addTaskHandler() {
     const date = new Date();
     const month = verifyMonth(date.getMonth());
     const fullDate = `${date.getDate()}/${month}`;
+    const token = localStorage.getItem('token');
     const completeDataOfTask = {
       description: newTask,
       status: 'pendente',
       created: fullDate,
+      token,
     };
-    addNewTask(completeDataOfTask);
+    await fetchCreateTask(completeDataOfTask);
+    await getTasksFromApi();
     setNewTasks('');
   }
 

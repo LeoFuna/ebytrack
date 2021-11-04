@@ -17,3 +17,24 @@ export const fetchLoginUser = async (email, password) => {
     console.log(err);
   }
 };
+
+export const fetchCreateTask = async ({ description, status, created, token }) => {
+  try {
+    const createResponse = await api.post('/tasks',
+      { description, status, created },
+      { headers: { Authorization: token } });
+    return createResponse;
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const fetchGetTasksByUser = async (token) => {
+  try {
+    const tasksFromUser = await api.get('/tasks',
+      { headers: { Authorization: token } });
+    return tasksFromUser;
+  } catch (err) {
+    console.log(err);
+  }
+};
