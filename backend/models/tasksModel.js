@@ -1,3 +1,4 @@
+const { ObjectId } = require('mongodb');
 const connection = require('./connection');
 
 const create = async (taskData) => {
@@ -12,6 +13,13 @@ const create = async (taskData) => {
   };
 };
 
+const deleteOne = async (id) => {
+  const db = await connection();
+  const deleteResponse = await db.collection('tasks').deleteOne({ _id: ObjectId(id) });
+  return deleteResponse;
+};
+
 module.exports = {
   create,
+  deleteOne,
 };
