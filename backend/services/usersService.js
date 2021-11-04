@@ -35,7 +35,7 @@ const createUser = async (name, lastname, email, password) => {
   if (await verifyIfEmailIsRegistered(email)) {
     return { err: { code: 401, message: 'esse email já possui registro.' } };
   }
-  const createResponse = await Model.create({ name, lastname, email, password });
+  const createResponse = await Model.create({ name, lastname, email, password, tasks: [] });
   return createResponse;
 };
 
