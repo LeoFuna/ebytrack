@@ -7,13 +7,14 @@ function TasksPanel() {
   function renderTasks() {
     return tasks.map((task, index) => (
       <div className="task-div" key={ index }>
-        <div>
-          { task.description }
+        <div className="description-div">
+          <input type="checkbox" name="minha Task" className="task-checkbox" />
+          <p className="description-task">{ task.description }</p>
         </div>
-        <div>
+        <div className="status-created-div">
           { task.status }
         </div>
-        <div>
+        <div className="status-created-div">
           { task.created }
         </div>
       </div>
