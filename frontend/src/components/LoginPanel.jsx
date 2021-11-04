@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { fetchLoginUser } from '../helpers/fetchApi';
 import { LoginButton } from '../styles/LoginStyles';
 
 function LoginPanel() {
@@ -13,17 +14,12 @@ function LoginPanel() {
     });
   }
 
-  function verifyUserCredentials({ email, password }) {
-    console.log('Acessei com:', email, password);
-    // Aqui o sistema acionará o BD e verificará se existe um usuário com esse email e senha para retornar o acesso ou o bloqueio com erro
-    const retornoDoBanco = { status: 404 };
-    const success = 200;
-    if (retornoDoBanco.status === success) {
-      console.log('Login com Sucesso');
-      // Redirecione para a página de login
-    } else {
+  async function verifyUserCredentials({ email, password }) {
+    const loginResponse = await fetchLoginUser(email, password);
+    if (loginResponse.data.error) {
       console.log('Email ou senha inválidos...');
-      // retorne o erro recebido com uma mensagem específica
+    } else {
+      console.log('Login com Sucesso');
     }
   }
 
@@ -54,7 +50,7 @@ function LoginPanel() {
         />
         <LoginButton
           disabled={ isDisable }
-          type="submit"
+          type="button"
           onClick={ () => verifyUserCredentials(formData) }
           id="login-button"
         >

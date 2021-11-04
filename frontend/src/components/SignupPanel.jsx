@@ -29,7 +29,6 @@ function SignupPanel() {
     const messageShownTimer = 2000;
     const { name, lastname, email, password } = userData;
     const createResponse = await fetchCreateUser(name, lastname, email, password);
-    // Vai ao BD e tenta fazer a config de criar usuário e dali retorna a informação de ok ou erro
     if (createResponse.error) {
       setErrorMessage(createResponse.message);
       setIsVisibleHandler({ success: false, failed: true });
