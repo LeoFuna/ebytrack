@@ -4,7 +4,10 @@ function TasksPanel() {
   return (
     <div id="tasks-container">
       <div name="task-div">
-        task
+        <div>
+          <input type="checkbox" name="minha Task" id="task" />
+          <p>minha task</p>
+        </div>
       </div>
       <div name="status-div">
         status
