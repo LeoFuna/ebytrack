@@ -4,6 +4,8 @@ const {
   getUserById, 
   createUser, 
   loginUser } = require('./controllers/usersController');
+const { createTask } = require('./controllers/tasksController');
+const auth = require('./auth/auth');
 
 const app = express();
 
@@ -25,3 +27,4 @@ app.get('/users/:id', getUserById);
 
 app.post('/users', createUser);
 app.post('/login', loginUser);
+app.post('/tasks', auth, createTask);
