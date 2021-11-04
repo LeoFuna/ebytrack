@@ -6,6 +6,7 @@ import { LoginButton } from '../styles/LoginStyles';
 function LoginPanel() {
   const [formData, setFormData] = useState({ email: '', password: '' });
   const [isDisable, setIsDisable] = useState(true);
+  const [loginMessage, setLoginMessage] = useState('');
 
   function handleForm({ target: { type, value } }) {
     setFormData({
@@ -17,7 +18,7 @@ function LoginPanel() {
   async function verifyUserCredentials({ email, password }) {
     const loginResponse = await fetchLoginUser(email, password);
     if (loginResponse.data.error) {
-      console.log('Email ou senha inválidos...');
+      setLoginMessage(loginResponse.data.message);
     } else {
       console.log('Login com Sucesso');
     }
@@ -42,6 +43,7 @@ function LoginPanel() {
           placeholder="Email"
           id="email-login"
         />
+        <p>{ loginMessage }</p>
         <input
           type="password"
           onChange={ handleForm }
