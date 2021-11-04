@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { fetchLoginUser } from '../helpers/fetchApi';
-import { LoginButton } from '../styles/LoginStyles';
+import { LoginButton, LoginMessage } from '../styles/LoginStyles';
 
 function LoginPanel() {
   const [formData, setFormData] = useState({ email: '', password: '' });
   const [isDisable, setIsDisable] = useState(true);
   const [loginMessage, setLoginMessage] = useState('');
+  const [isVisible, setIsVisible] = useState(false);
 
   function handleForm({ target: { type, value } }) {
     setFormData({
@@ -16,12 +17,16 @@ function LoginPanel() {
   }
 
   async function verifyUserCredentials({ email, password }) {
+    const messageShownTimer = 2000;
     const loginResponse = await fetchLoginUser(email, password);
     if (loginResponse.data.error) {
       setLoginMessage(loginResponse.data.message);
+      setIsVisible(true);
     } else {
-      console.log('Login com Sucesso');
+      setLoginMessage('Login efetuado com sucesso');
+      setIsVisible(true);
     }
+    setTimeout(() => setIsVisible(false), messageShownTimer);
     setFormData({ email: '', password: '' });
   }
 
@@ -43,7 +48,7 @@ function LoginPanel() {
           placeholder="Email"
           id="email-login"
         />
-        <p>{ loginMessage }</p>
+        <LoginMessage isVisibleHandler={ isVisible }>{ loginMessage }</LoginMessage>
         <input
           type="password"
           onChange={ handleForm }
