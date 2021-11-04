@@ -1,10 +1,17 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import TasksContext from '../context/tasksContext';
 
 function TasksCreateInput() {
   const [newTask, setNewTasks] = useState('');
+  const { addNewTask } = useContext(TasksContext);
 
   function handleInput({ target: { value } }) {
     setNewTasks(value);
+  }
+
+  function addTaskHandler() {
+    addNewTask(newTask);
+    setNewTasks('');
   }
 
   return (
@@ -16,7 +23,13 @@ function TasksCreateInput() {
         onChange={ handleInput }
         placeholder="Informe a task a ser adicionada..."
       />
-      <button type="button" id="add-task-button">Adicionar</button>
+      <button
+        type="button"
+        onClick={ () => addTaskHandler() }
+        id="add-task-button"
+      >
+        Adicionar
+      </button>
     </div>
   );
 }
