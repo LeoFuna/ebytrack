@@ -16,7 +16,7 @@ const getTasksByUserId = async (userId) => {
 };
 
 const updateTask = async (updatedTask, id) => {
-  const updateResponse = await Model.update({ id, ...updatedTask });
+  const updateResponse = await Model.update(id, updatedTask);
   return updateResponse;
 };
 

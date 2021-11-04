@@ -31,10 +31,10 @@ const getById = async (id) => {
   return taskData;
 };
 
-const update = async (newPayload) => {
+const update = async (id, newPayload) => {
   const db = await connection();
   await db.collection('tasks').updateOne(
-    { _id: ObjectId(newPayload.id) }, { $set: newPayload },
+    { _id: ObjectId(id) }, { $set: newPayload },
   );
   return newPayload;
 };
