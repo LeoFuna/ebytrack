@@ -23,6 +23,7 @@ function LoginPanel() {
       setLoginMessage(loginResponse.data.message);
       setIsVisible(true);
     } else {
+      console.log(loginResponse);
       setLoginMessage('Login efetuado com sucesso');
       setIsVisible(true);
     }
