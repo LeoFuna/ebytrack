@@ -29,8 +29,30 @@ function TasksProvider({ children }) {
     setTasks([...orderedTasksByDescription]);
   }
 
+  function orderByStatus(status) {
+    const doneTasks = tasks.filter((task) => task.status === 'pronto');
+    const doingTasks = tasks.filter((task) => task.status === 'em andamento');
+    const pendingTasks = tasks.filter((task) => task.status === 'pendente');
+    if (status === 1) {
+      console.log([...doneTasks, ...doingTasks, ...pendingTasks]);
+    }
+    if (status === 2) {
+      console.log([...doingTasks, ...pendingTasks, ...doneTasks]);
+    }
+    if (status === 0) {
+      console.log([...pendingTasks, ...doneTasks, ...doingTasks]);
+    }
+  }
+
   return (
-    <TasksContext.Provider value={ { tasks, addNewTask, orderByAlphabetical } }>
+    <TasksContext.Provider
+      value={ {
+        tasks,
+        addNewTask,
+        orderByAlphabetical,
+        orderByStatus,
+      } }
+    >
       { children }
     </TasksContext.Provider>
   );

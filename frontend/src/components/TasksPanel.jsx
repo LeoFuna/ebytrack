@@ -2,8 +2,9 @@ import React, { useContext, useState } from 'react';
 import TasksContext from '../context/tasksContext';
 
 function TasksPanel() {
-  const { tasks, orderByAlphabetical } = useContext(TasksContext);
+  const { tasks, orderByAlphabetical, orderByStatus } = useContext(TasksContext);
   const [orderOnDescription, setOrderOnDescription] = useState(0);
+  const [orderOnStatus, setOrderOnStatus] = useState(0);
 
   function renderTasks() {
     return tasks.map((task, index) => (
@@ -37,6 +38,19 @@ function TasksPanel() {
     }
   }
 
+  function handleOrderOnStatus() {
+    if (orderOnStatus === 0) {
+      orderByStatus(1);
+      setOrderOnStatus(1);
+    } else if (orderOnStatus === 1) {
+      orderByStatus(2);
+      setOrderOnDescription(2);
+    } else {
+      orderByStatus(0);
+      setOrderOnDescription(0);
+    }
+  }
+
   return (
     <div id="tasks-container">
       <div id="header-task-panel">
@@ -50,7 +64,13 @@ function TasksPanel() {
           </button>
         </div>
         <div className="status-created-div">
-          Status
+          <button
+            className="status-task"
+            onClick={ () => handleOrderOnStatus() }
+            type="button"
+          >
+            Status
+          </button>
         </div>
         <div className="status-created-div">
           Criado
