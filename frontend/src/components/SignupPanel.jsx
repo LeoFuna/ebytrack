@@ -53,7 +53,7 @@ function SignupPanel() {
   }, [formData]);
 
   return (
-    <div id="signup-container">
+    <div id="signup-container" data-testid="signup-panel">
       <h2>Cadastro de Usuário</h2>
       <SuccessSignupMessage isVisibleHandler={ isVisibleHandler.success }>
         <h4>CADASTRO CRIADO COM SUCESSO</h4>
@@ -69,6 +69,7 @@ function SignupPanel() {
           value={ formData.name }
           placeholder="Nome"
           id="name-signup"
+          data-testid="name-signup"
         />
         <input
           type="text"
@@ -77,6 +78,7 @@ function SignupPanel() {
           value={ formData.lastname }
           placeholder="Sobrenome"
           id="lastname-signup"
+          data-testid="lastname-signup"
         />
         <input
           type="email"
@@ -85,6 +87,7 @@ function SignupPanel() {
           value={ formData.email }
           placeholder="Email"
           id="email-signup"
+          data-testid="email-signup"
         />
         <input
           type="text"
@@ -93,18 +96,27 @@ function SignupPanel() {
           value={ formData.password }
           placeholder="Password"
           id="password-signup"
+          data-testid="password-signup"
         />
         <SignupButton
           disabled={ isDisable }
           type="button"
           onClick={ () => createUser(formData) }
           id="signup-button"
+          data-testid="signup-button"
         >
           Cadastrar
         </SignupButton>
       </form>
       <Link to="/" style={ { textDecoration: 'none' } }>
-        <button type="button" id="signup-back-button">Voltar</button>
+        <button
+          type="button"
+          data-testid="signup-back-button"
+          id="signup-back-button"
+        >
+          Voltar
+
+        </button>
       </Link>
     </div>
   );

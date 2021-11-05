@@ -6,7 +6,7 @@ import '../styles/signup.css';
 
 function Signup() {
   return (
-    <div id="signup-main-container">
+    <div data-testid="signup-main-container" id="signup-main-container">
       <HeaderSignup />
       <SignupPanel />
       <Signature />

@@ -48,7 +48,7 @@ function LoginPanel() {
   }, [formData]);
 
   return (
-    <div id="panel-container">
+    <div id="panel-container" data-testid="panel-container">
       <form>
         <input
           type="email"
@@ -56,6 +56,7 @@ function LoginPanel() {
           value={ formData.email }
           placeholder="Email"
           id="email-login"
+          data-testid="email-login"
         />
         <LoginMessage isVisibleHandler={ isVisible }>{ loginMessage }</LoginMessage>
         <input
@@ -63,19 +64,21 @@ function LoginPanel() {
           onChange={ handleForm }
           value={ formData.password }
           placeholder="Password"
+          data-testid="password-login"
           id="password-login"
         />
         <LoginButton
           disabled={ isDisable }
           type="button"
           onClick={ () => verifyUserCredentials(formData) }
+          data-testid="login-button"
           id="login-button"
         >
           login
         </LoginButton>
       </form>
       <Link to="/signup" style={ { textDecoration: 'none' } }>
-        <p id="signup">Primeiro Acesso</p>
+        <p id="signup" data-testid="signup">Primeiro Acesso</p>
       </Link>
 
     </div>
