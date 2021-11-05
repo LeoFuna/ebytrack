@@ -1,6 +1,5 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
-// import { fetchLoginUser } from '../helpers/fetchApi';
 import App from '../App';
 
 describe('LOGIN Testa presença dos itens', () => {

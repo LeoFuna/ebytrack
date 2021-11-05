@@ -4,7 +4,6 @@ import UsersContext from '../context/usersContext';
 
 function HeaderTasks() {
   const { greeting } = useContext(UsersContext);
-  console.log(greeting);
   return (
     <header id="header-container-tasks">
       <h1>
