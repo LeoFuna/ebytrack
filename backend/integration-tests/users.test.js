@@ -96,7 +96,6 @@ describe('POST /users', function () {
       });
     });
     it('retorna um objeto', function () {
-      console.log(response.body);
       expect(response.body).to.be.an('object');
     });
     it('retorna o status 200', function () {

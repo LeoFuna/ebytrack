@@ -13,6 +13,10 @@ const auth = require('./auth/auth');
 
 const app = express();
 
+const PORT = 3001;
+
+app.listen(PORT, () => console.log(`Estou ouvindo a porta ${PORT}`));
+
 app.use(express.json());
 // https://enable-cors.org/server_expressjs.html
 // Usado para permitir o acesso do meu localhost onde está o front end, antes o mesmo fazio o bloqueio atrapalhando a request
