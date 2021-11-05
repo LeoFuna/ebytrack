@@ -76,4 +76,13 @@ describe('SIGNUP Testa a presença dos itens', () => {
     expect(emailInput).toBeInTheDocument();
     expect(passwordInput).toBeInTheDocument();
   });
+  test('no painel, possuindo 2 botões', () => {
+    render(<App />);
+    const signupButton = screen.getByTestId('signup-button');
+    const goBackButton = screen.getByTestId('signup-back-button');
+    expect(signupButton).toBeInTheDocument();
+    expect(goBackButton).toBeInTheDocument();
+    expect(signupButton.innerHTML).toBe('Cadastrar');
+    expect(goBackButton.innerHTML).toBe('Voltar');
+  });
 });

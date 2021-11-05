@@ -103,12 +103,20 @@ function SignupPanel() {
           type="button"
           onClick={ () => createUser(formData) }
           id="signup-button"
+          data-testid="signup-button"
         >
           Cadastrar
         </SignupButton>
       </form>
       <Link to="/" style={ { textDecoration: 'none' } }>
-        <button type="button" id="signup-back-button">Voltar</button>
+        <button
+          type="button"
+          data-testid="signup-back-button"
+          id="signup-back-button"
+        >
+          Voltar
+
+        </button>
       </Link>
     </div>
   );
