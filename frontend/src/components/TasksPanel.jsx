@@ -52,7 +52,7 @@ function TasksPanel() {
         </div>
         <div className="status-created-div">
           <button
-            className="status-task"
+            id="status-order-button"
             onClick={ () => handleOrderOnStatus() }
             type="button"
           >
@@ -60,7 +60,13 @@ function TasksPanel() {
           </button>
         </div>
         <div className="status-created-div">
-          Criado
+          <button
+            id="created-order-button"
+            onClick={ () => console.log('Deve Ordenar por data') }
+            type="button"
+          >
+            Criado
+          </button>
         </div>
       </div>
       { renderTasks() }

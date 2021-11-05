@@ -49,3 +49,13 @@ export const fetchUpdateTask = async (id, token, payload) => {
     console.log(err);
   }
 };
+
+export const fetchDeleteOneTask = async (id, token) => {
+  try {
+    const deleteResponse = await api.delete(`/tasks/${id}`,
+      { headers: { Authorization: token } });
+    return deleteResponse;
+  } catch (err) {
+    console.log(err);
+  }
+};
