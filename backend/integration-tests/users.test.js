@@ -166,4 +166,32 @@ describe('POST /login', function () {
       expect(response.body).to.haveOwnProperty('error').that.is.equal(401);
     });
   });
+  describe('quando é passado senha ou email incorretos', function () {
+    let response = {};
+    before(async function () {
+      await chai.request(server)
+      .post('/users')
+      .send({
+        name: 'Leo',
+        lastname: 'Funa',
+        email: 'funa@gmail.com',
+        password: 'senhasecreta',
+      });
+      response = await chai.request(server)
+      .post('/login')
+      .send({
+        email: 'funa@gmail.com',
+        password: 'senha1',
+      });
+    });
+    it('retorna um objeto', function () {
+      expect(response.body).to.be.an('object');
+    });
+    it('retorna um status 200', function () {
+      expect(response).to.have.status(200);
+    });
+    it('retorna uma chave erro com valor 401', function () {
+      expect(response.body).to.haveOwnProperty('error').that.is.equal(401);
+    });
+  });
 });
