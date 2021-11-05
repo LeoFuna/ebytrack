@@ -49,7 +49,7 @@ function LoginPanel() {
 
   return (
     <div id="panel-container" data-testid="panel-container">
-      <form>
+      <form autoComplete="off">
         <input
           type="email"
           onChange={ handleForm }

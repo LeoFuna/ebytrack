@@ -61,7 +61,7 @@ function SignupPanel() {
       <FailedSignupMessage isVisibleHandler={ isVisibleHandler.failed }>
         <h4>{ errorMessage }</h4>
       </FailedSignupMessage>
-      <form>
+      <form autoComplete="off">
         <input
           type="text"
           name="name"
