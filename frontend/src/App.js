@@ -1,5 +1,6 @@
 import React from 'react';
 import { Route, Switch } from 'react-router';
+import { BrowserRouter } from 'react-router-dom';
 import './App.css';
 import TasksProvider from './context/tasksProvider';
 import UsersProvider from './context/usersProvider';
@@ -11,11 +12,13 @@ function App() {
   return (
     <UsersProvider>
       <TasksProvider>
-        <Switch>
-          <Route exact path="/" component={ Login } />
-          <Route exact path="/signup" component={ Signup } />
-          <Route exact path="/tasks" component={ Tasks } />
-        </Switch>
+        <BrowserRouter>
+          <Switch>
+            <Route exact path="/" component={ Login } />
+            <Route exact path="/signup" component={ Signup } />
+            <Route exact path="/tasks" component={ Tasks } />
+          </Switch>
+        </BrowserRouter>
       </TasksProvider>
     </UsersProvider>
   );
