@@ -1,3 +1,4 @@
+/* eslint-disable mocha/max-top-level-suites */
 /* eslint-disable sonarjs/no-duplicate-string */
 const chai = require('chai');
 
@@ -102,6 +103,66 @@ describe('POST /users', function () {
       expect(response).to.have.status(200);
     });
     it('retorna uma chave error com valor 401', function () {
+      expect(response.body).to.haveOwnProperty('error').that.is.equal(401);
+    });
+  });
+});
+
+describe('POST /login', function () {
+  describe('quando é feito o login com sucesso', function () {
+    let response = {};
+    before(async function () {
+      await chai.request(server)
+      .post('/users')
+      .send({
+        name: 'Leo',
+        lastname: 'Funa',
+        email: 'funa@gmail.com',
+        password: 'senhasecreta',
+      });
+      response = await chai.request(server)
+      .post('/login')
+      .send({
+        email: 'funa@gmail.com',
+        password: 'senhasecreta',
+      });
+    });
+    it('retorna um objeto', function () {
+      expect(response.body).to.be.an('object');
+    });
+    it('retorna o status 200', function () {
+      expect(response).to.have.status(200);
+    });
+    it('retorna as chaves token e name', function () {
+      expect(response.body).to.haveOwnProperty('token').that.to.be.a('string');
+      expect(response.body).to.haveOwnProperty('name').that.to.be.a('string');
+    });
+  });
+  describe('quando é passado dado inválido', function () {
+    let response = {};
+    before(async function () {
+      await chai.request(server)
+      .post('/users')
+      .send({
+        name: 'Leo',
+        lastname: 'Funa',
+        email: 'funa@gmail.com',
+        password: 'senhasecreta',
+      });
+      response = await chai.request(server)
+      .post('/login')
+      .send({
+        email: 'funa@',
+        password: 'senhasecreta',
+      });
+    });
+    it('retorna um objeto', function () {
+      expect(response.body).to.be.an('object');
+    });
+    it('retorna um status 200', function () {
+      expect(response).to.have.status(200);
+    });
+    it('retorna uma chave erro com valor 401', function () {
       expect(response.body).to.haveOwnProperty('error').that.is.equal(401);
     });
   });
