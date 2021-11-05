@@ -27,12 +27,14 @@ function TasksPanel() {
     if (orderOnStatus === 0) {
       orderByStatus(1);
       setOrderOnStatus(1);
-    } else if (orderOnStatus === 1) {
+    }
+    if (orderOnStatus === 1) {
       orderByStatus(2);
-      setOrderOnDescription(2);
-    } else {
+      setOrderOnStatus(2);
+    }
+    if (orderOnStatus === 2) {
       orderByStatus(0);
-      setOrderOnDescription(0);
+      setOrderOnStatus(0);
     }
   }
 

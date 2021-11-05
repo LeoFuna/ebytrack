@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { fetchUpdateTask } from '../helpers/fetchApi';
+import TasksContext from '../context/tasksContext';
 
 function Task({ taskData: { _id, description, status, created } }) {
+  const { getTasksFromApi } = useContext(TasksContext);
   async function updateTask({ target }) {
     const token = localStorage.getItem('token');
     const { value } = target;
     await fetchUpdateTask(_id, token, { updatedTask: { status: value } });
+    await getTasksFromApi();
   }
   return (
     <div className="task-div">

@@ -32,18 +32,18 @@ function TasksProvider({ children }) {
     setTasks([...orderedTasksByDescription]);
   }
 
-  function orderByStatus(status) {
+  async function orderByStatus(status) {
     const doneTasks = tasks.filter((task) => task.status === 'pronto');
     const doingTasks = tasks.filter((task) => task.status === 'em andamento');
     const pendingTasks = tasks.filter((task) => task.status === 'pendente');
     if (status === 1) {
-      console.log([...doneTasks, ...doingTasks, ...pendingTasks]);
+      setTasks([...doneTasks, ...doingTasks, ...pendingTasks]);
     }
     if (status === 2) {
-      console.log([...doingTasks, ...pendingTasks, ...doneTasks]);
+      setTasks([...doingTasks, ...pendingTasks, ...doneTasks]);
     }
     if (status === 0) {
-      console.log([...pendingTasks, ...doneTasks, ...doingTasks]);
+      setTasks([...pendingTasks, ...doneTasks, ...doingTasks]);
     }
   }
 
@@ -51,6 +51,7 @@ function TasksProvider({ children }) {
     <TasksContext.Provider
       value={ {
         tasks,
+        setTasks,
         getTasksFromApi,
         orderByAlphabetical,
         orderByStatus,
