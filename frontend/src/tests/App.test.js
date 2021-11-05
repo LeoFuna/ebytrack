@@ -3,7 +3,7 @@ import { render, screen, fireEvent } from '@testing-library/react';
 // import { fetchLoginUser } from '../helpers/fetchApi';
 import App from '../App';
 
-describe('Testa presença dos itens', () => {
+describe('LOGIN Testa presença dos itens', () => {
   describe('ao iniciar', () => {
     test('deve possuir um Cabeçalho, um Painel de Login e um Rodapé', () => {
       render(<App />);
@@ -47,8 +47,33 @@ describe('Testa as funcionalidades', () => {
       expect(signupPage).toBeInTheDocument();
       expect(signupLink).not.toBeInTheDocument();
     });
-    test('deve se manter na pagina de login caso usuário não cadastrado', () => {
-      render(<App />);
-    });
+  });
+});
+
+describe('SIGNUP Testa a presença dos itens', () => {
+  test('ao ir no cadastro deve haver cabeçalho, painel de cadastro e rodapé', () => {
+    render(<App />);
+    const signupPanel = screen.getByTestId('signup-panel');
+    const signupHeader = screen.getByTestId('header-container-signup');
+    const signature = screen.getByText(/Funa/);
+    expect(signupPanel).toBeInTheDocument();
+    expect(signupHeader).toBeInTheDocument();
+    expect(signature).toBeInTheDocument();
+  });
+  test('no cabeçalho, sendo o valor de "ack"', () => {
+    render(<App />);
+    const headerText = screen.getByText('ack');
+    expect(headerText).toBeInTheDocument();
+  });
+  test('no painel, possuindo 4 inputs', () => {
+    render(<App />);
+    const nameInput = screen.getByTestId('name-signup');
+    const lastnameInput = screen.getByTestId('lastname-signup');
+    const emailInput = screen.getByTestId('email-signup');
+    const passwordInput = screen.getByTestId('password-signup');
+    expect(nameInput).toBeInTheDocument();
+    expect(lastnameInput).toBeInTheDocument();
+    expect(emailInput).toBeInTheDocument();
+    expect(passwordInput).toBeInTheDocument();
   });
 });
