@@ -22,7 +22,8 @@ function TasksCreateInput() {
       created: fullDate,
       token,
     };
-    await fetchCreateTask(completeDataOfTask);
+    const responseFromApi = await fetchCreateTask(completeDataOfTask);
+    console.log(responseFromApi);
     await getTasksFromApi();
     setNewTasks('');
   }
