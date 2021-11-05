@@ -1,8 +1,9 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
+import { fetchLoginUser } from '../helpers/fetchApi';
 import App from '../App';
 
-describe('Testa as funcionalidades da aplicação', () => {
+describe('Testa presença dos itens', () => {
   describe('ao iniciar', () => {
     test('deve possuir um Cabeçalho, um Painel de Login e um Rodapé', () => {
       render(<App />);
@@ -32,6 +33,22 @@ describe('Testa as funcionalidades da aplicação', () => {
       const signupLink = screen.getByTestId('signup');
       expect(signupLink).toBeInTheDocument();
       expect(signupLink.innerHTML).toBe('Primeiro Acesso');
+    });
+  });
+});
+
+describe('Testa as funcionalidades', () => {
+  describe('ao iniciar a aplicação', () => {
+    test('deve ser possível ir à página de cadastro de usuários', () => {
+      render(<App />);
+      const signupLink = screen.getByTestId('signup');
+      fireEvent.click(signupLink);
+      const signupPage = screen.getByTestId('signup-main-container');
+      expect(signupPage).toBeInTheDocument();
+      expect(signupLink).not.toBeInTheDocument();
+    });
+    test('deve se manter na pagina de login caso usuário não cadastrado', () => {
+      render(<App />);
     });
   });
 });
