@@ -23,8 +23,11 @@ function TasksCreateInput() {
       token,
     };
     const responseFromApi = await fetchCreateTask(completeDataOfTask);
-    console.log(responseFromApi);
-    await getTasksFromApi();
+    if (responseFromApi.data.error) {
+      console.log(responseFromApi.data);
+    } else {
+      await getTasksFromApi();
+    }
     setNewTasks('');
   }
 
