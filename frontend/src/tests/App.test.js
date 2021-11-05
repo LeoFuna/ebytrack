@@ -21,7 +21,17 @@ describe('Testa as funcionalidades da aplicação', () => {
       expect(passwordInput).toBeInTheDocument();
     });
     test('o botao login deve estar presente e desabilitado', () => {
-      render();
+      render(<App />);
+      const buttonLogin = screen.getByTestId('login-button');
+      expect(buttonLogin).toBeInTheDocument();
+      expect(buttonLogin).toBeDisabled();
+      expect(buttonLogin.innerHTML).toBe('login');
+    });
+    test('deve ter um link para cadastro de usuário', () => {
+      render(<App />);
+      const signupLink = screen.getByTestId('signup');
+      expect(signupLink).toBeInTheDocument();
+      expect(signupLink.innerHTML).toBe('Primeiro Acesso');
     });
   });
 });

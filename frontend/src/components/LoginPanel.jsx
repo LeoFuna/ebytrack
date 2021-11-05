@@ -71,13 +71,14 @@ function LoginPanel() {
           disabled={ isDisable }
           type="button"
           onClick={ () => verifyUserCredentials(formData) }
+          data-testid="login-button"
           id="login-button"
         >
           login
         </LoginButton>
       </form>
       <Link to="/signup" style={ { textDecoration: 'none' } }>
-        <p id="signup">Primeiro Acesso</p>
+        <p id="signup" data-testid="signup">Primeiro Acesso</p>
       </Link>
 
     </div>
