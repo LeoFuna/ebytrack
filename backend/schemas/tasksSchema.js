@@ -2,7 +2,7 @@ const Joi = require('joi');
 
 const validateDescription = (description) => {
   const schema = Joi.object({
-    description: Joi.string().min(3).alphanum().required(),
+    description: Joi.string().min(3).required(),
   });
   const validationResponse = schema.validate({ description });
   if (validationResponse.error) return false;
