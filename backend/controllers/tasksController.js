@@ -5,7 +5,13 @@ const createTask = async (req, res) => {
   const createResponse = await Service.createTask({ 
     description, status, created, userId: userInfo.id,
    });
-   return res.status(200).json(createResponse);
+   if (createResponse.err) {
+    return res.status(200).json({ 
+      error: createResponse.err.code, 
+      message: createResponse.err.message, 
+    });
+  }
+  return res.status(200).json(createResponse);
 };
 
 const deleteTask = async (req, res) => {

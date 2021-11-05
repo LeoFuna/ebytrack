@@ -1,6 +1,5 @@
-const { getByEmail } = require("../models/usersModel");
 const Joi = require('joi');
-
+const { getByEmail } = require('../models/usersModel');
 
 const verifyIfEmailIsRegistered = async (email) => {
   const searchByemailResponse = await getByEmail(email);
@@ -12,7 +11,7 @@ const validateRequiredUserDataForCreate = (name, lastname, email, password) => {
     name: Joi.string().min(3).required(),
     lastname: Joi.string().min(3).required(),
     email: Joi.string().lowercase().email({
-      minDomainSegments: 2
+      minDomainSegments: 2,
     }).required(),
     password: Joi.string().alphanum().min(6).required(),
   });
@@ -24,7 +23,7 @@ const validateRequiredUserDataForCreate = (name, lastname, email, password) => {
 const validateEmail = (email) => {
   const schema = Joi.object({
     email: Joi.string().lowercase().email({
-      minDomainSegments: 2
+      minDomainSegments: 2,
     }).required(),
   });
   const validationResponse = schema.validate({ email });
